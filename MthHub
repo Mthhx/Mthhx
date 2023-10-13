@@ -1,0 +1,101 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+OrionLib:MakeNotification({
+Name = "Mth Hub ( BETA )",
+Content = "Mth Hub:Obrigado por usar nosso script :)",
+Image = "rbxassetid://4483345998",
+Time = 10
+})
+
+local Window = OrionLib:MakeWindow({Name = "Mth Hub (BETA)", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+
+local function AutoClick()
+  while getgenv().AutoClick == true do task.wait()
+    local RS = game:GetService("ReplicatedStorage")
+    local Remote = RS:WaitForChild("Remotes", 9e9)
+    Remote:WaitForChild("ParryButtonPress"):Fire()
+  end
+end
+
+local MainTab = Window:MakeTab({
+  Name = "Mth - Inicio",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+})
+
+local MainTab2 = Window:MakeTab({
+  Name = "Mth - Misc",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+})
+
+MainTab:AddButton({
+  Name = "https://discord.com/invite/6u7vdh8aQX",
+  Callback = function()
+    OrionLib:MakeNotification({
+      Name = "Me ajude entrando no discord :)",
+      Content = "https://discord.com/invite/KAfQhW67Ft",
+      Image = "rbxassetid://4483345998",
+      Time = 5
+    })
+  end    
+})
+
+MainTab2:AddToggle({
+                        Name = "FPS booster",
+                   Default = false,
+              Callback = function(Value)
+if Value then
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Mthhx/Mthhx/main/Mth%20/Fps/booster'),true))()
+                           OrionLib:MakeNotification({
+                      Name = "FPS BOOSTER",
+                Content = "fps booster ativado!",
+            Image = "rbxassetid://4483345998",
+Time = 5
+})
+     end
+  end
+})
+
+       MainTab:AddToggle({
+                        Name = "Auto Parry",
+                   Default = false,
+              Callback = function(Value)
+if Value then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0", true))()
+                           OrionLib:MakeNotification({
+                      Name = "Auto Parry",
+                Content = "Auto Parry ativado!",
+            Image = "rbxassetid://4483345998",
+Time = 10
+})
+     end
+  end
+})
+
+MainTab:AddToggle({
+  Name = "AutoClick",
+  Default = false,
+  Callback = function(Value)
+    getgenv().AutoClick = Value
+    AutoClick()
+  end    
+})
+               
+                     
+ MainTab:AddToggle({
+    Name = "Manual AutoClick (MOBILE)",
+    Default = false,
+    Callback = function(Value)
+        print(Value)
+if Value then
+loadstring(game:HttpGet('https://pastebin.com/raw/KB4xQe4j'))()
+OrionLib:MakeNotification({
+    Name = "Manual AutoClick (MOBILE)",
+    Content = "Você ativou manual auto click",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+end
+end
+})
