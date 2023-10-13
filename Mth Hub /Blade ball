@@ -41,16 +41,20 @@ MainTab:AddButton({
   end    
 })
 
-MainTab2:AddButton({
-  Name = "FPS BOOSTER",
-  Callback = function()
-    OrionLib:MakeNotification({
-      Name = "FPS BOOSTER",
-      Content = "obrigado por usar nosso fps boost",
-      Image = "rbxassetid://4483345998",
-      Time = 5
-    })
-  end    
+MainTab2:AddToggle({
+                        Name = "FPS booster",
+                   Default = false,
+              Callback = function(Value)
+if Value then
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Mthhx/Mthhx/main/Mth%20/Fps/booster'),true))()
+                           OrionLib:MakeNotification({
+                      Name = "FPS BOOSTER",
+                Content = "fps booster ativado!",
+            Image = "rbxassetid://4483345998",
+Time = 5
+})
+     end
+  end
 })
 
        MainTab:AddToggle({
