@@ -30,11 +30,11 @@ local MainTab2 = Window:MakeTab({
 })
 
 MainTab:AddButton({
-  Name = "https://discord.com/invite/6u7vdh8aQX",
+  Name = "https://discord.com/invite/xRavruc9Sy",
   Callback = function()
     OrionLib:MakeNotification({
       Name = "Me ajude entrando no discord :)",
-      Content = "https://discord.com/invite/KAfQhW67Ft",
+      Content = "https://discord.com/invite/xRavruc9Sy",
       Image = "rbxassetid://4483345998",
       Time = 5
     })
@@ -100,7 +100,7 @@ end
 end
 })
 
-    MainTab:AddTextbox({
+    MainTab2:AddTextbox({
     Name = "WalkSpeed",
     Default = "36",
     TextDisappear = false,
@@ -269,3 +269,14 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
     SpamClick()
   end
 end)
+MainTab:AddButton({
+  Name = "Clique (E) no teclado para spam",
+  Callback = function()
+    OrionLib:MakeNotification({
+      Name = "Clique (E) no teclado para spam",
+      Content = "Clique (E) no teclado para spam",
+      Image = "rbxassetid://4483345998",
+      Time = 5
+    })
+  end    
+})
