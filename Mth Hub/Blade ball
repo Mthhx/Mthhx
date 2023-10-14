@@ -1,0 +1,299 @@
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+OrionLib:MakeNotification({
+Name = "Mth Hub ( BETA )",
+Content = "Mth Hub:Obrigado por usar nosso script :)",
+Image = "rbxassetid://4483345998",
+Time = 10
+})
+
+local Window = OrionLib:MakeWindow({Name = "Mth Hub (BETA)", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+
+local function AutoClick()
+  while getgenv().AutoClick == true do task.wait()
+    local RS = game:GetService("ReplicatedStorage")
+    local Remote = RS:WaitForChild("Remotes", 9e9)
+    Remote:WaitForChild("ParryButtonPress"):Fire()
+  end
+end
+
+local MainTab = Window:MakeTab({
+  Name = "Mth - Inicio",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+})
+
+local MainTab2 = Window:MakeTab({
+  Name = "Mth - Misc",
+  Icon = "rbxassetid://4483345998",
+  PremiumOnly = false
+})
+
+MainTab:AddButton({
+  Name = "https://discord.com/invite/xRavruc9Sy",
+  Callback = function()
+    OrionLib:MakeNotification({
+      Name = "Me ajude entrando no discord :)",
+      Content = "https://discord.com/invite/xRavruc9Sy",
+      Image = "rbxassetid://4483345998",
+      Time = 5
+    })
+  end    
+})
+
+MainTab2:AddToggle({
+                        Name = "FPS booster",
+                   Default = false,
+              Callback = function(Value)
+if Value then
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Mthhx/Mthhx/main/Mth%20/Fps/booster'),true))()
+                           OrionLib:MakeNotification({
+                      Name = "FPS BOOSTER",
+                Content = "fps booster ativado!",
+            Image = "rbxassetid://4483345998",
+Time = 5
+})
+     end
+  end
+})
+
+       MainTab:AddToggle({
+                        Name = "Auto Parry",
+                   Default = false,
+              Callback = function(Value)
+if Value then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0", true))()
+                           OrionLib:MakeNotification({
+                      Name = "Auto Parry",
+                Content = "Auto Parry ativado!",
+            Image = "rbxassetid://4483345998",
+Time = 10
+})
+     end
+  end
+})
+
+MainTab:AddToggle({
+                        Name = "Auto ParryV2",
+                   Default = false,
+              Callback = function(Value)
+if Value then
+loadstring(game:HttpGet('https://raw.githubusercontent.com/DevTravDYT/dsaaswadfeszad/main/visual/BladeBall'))();
+                           OrionLib:MakeNotification({
+                      Name = "Auto ParryV2",
+                Content = "Auto ParryV2 ativado! Recomendado ficar parado para usar",
+            Image = "rbxassetid://4483345998",
+Time = 12
+})
+     end
+  end
+})
+
+MainTab:AddToggle({
+  Name = "AutoClick",
+  Default = false,
+  Callback = function(Value)
+    getgenv().AutoClick = Value
+    AutoClick()
+  end    
+})
+               
+                     
+ MainTab:AddToggle({
+    Name = "Manual AutoClick (MOBILE)",
+    Default = false,
+    Callback = function(Value)
+        print(Value)
+if Value then
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Mthhx/Mthhx/main/Auto%20clicker/matheuzxs.'),true))()
+OrionLib:MakeNotification({
+    Name = "Manual AutoClick (MOBILE)",
+    Content = "Você ativou manual auto click",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+end
+end
+})
+
+    MainTab2:AddTextbox({
+    Name = "WalkSpeed",
+    Default = "36",
+    TextDisappear = false,
+    Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end      
+})
+
+local function ESP_Ball()
+  while getgenv().ESP_Ball == true do task.wait()
+    local plr = game.Players.LocalPlayer
+    local plrRP = plr.Character:FindFirstChild("HumanoidRootPart")
+    for ___,ball in pairs(workspace:WaitForChild("Balls", 10):GetChildren()) do
+      if ball and ball:IsA("Part") and ball:GetAttribute("realBall") == true and not ball:FindFirstChild("ESP_REDzHUB") then
+        
+        local Folder = Instance.new("Folder", ball)
+        local BHA = Instance.new("BoxHandleAdornment",Folder)
+        local BillboardGui = Instance.new("BillboardGui", BHA)
+        local TextLabel = Instance.new("TextLabel", BillboardGui)
+        Folder.Name = "ESP_REDzHUB"
+        
+        BHA.Size = Vector3.new(1,0, 1,0)
+        BHA.Name = "ESP_REDzHUB"
+        BHA.AlwaysOnTop = true
+        BHA.ZIndex = 10
+        BHA.Transparency = 0
+        
+        BillboardGui.Adornee = ball
+        BillboardGui.Size = UDim2.new(0, 100, 0, 150)
+        BillboardGui.StudsOffset = Vector3.new(0, 1, 0)
+        BillboardGui.AlwaysOnTop = true
+        
+        TextLabel.BackgroundTransparency = 1
+        TextLabel.Position = UDim2.new(0, 0, 0, -50)
+        TextLabel.Size = UDim2.new(0, 100, 0, 100)
+        TextLabel.TextSize = 10
+        TextLabel.TextColor3 = Color3.new(1, 1, 1)
+        TextLabel.TextStrokeTransparency = 0
+        TextLabel.TextYAlignment = Enum.TextYAlignment.Bottom
+        TextLabel.Text = "Ball <...>"
+        TextLabel.ZIndex = 15
+        TextLabel.TextColor3 = Color3.fromRGB(255,100,0)
+        
+        task.spawn(function()
+          while task.wait() do
+            local plr = game.Players.LocalPlayer
+            local plrRP = plr.Character:FindFirstChild("HumanoidRootPart")
+            if plrRP and ball then
+              local distance = math.floor((plrRP.Position - ball.Position).Magnitude)
+              TextLabel.Text = "Ball <" .. tostring(distance) .. ">"
+            end
+          end
+        end)
+      end
+    end
+  end
+  task.wait()
+  for _,v in pairs(workspace:WaitForChild("Balls", 10):GetChildren()) do
+    if v:FindFirstChild("ESP_REDzHUB") then
+      v:Destroy()
+    end
+  end
+end
+
+MainTab2:AddToggle({
+  Name = "Esp Ball",
+  Default = false,
+  Callback = function(Value)
+    getgenv().ESP_Ball = Value
+    ESP_Ball()
+  end    
+})
+local function ESP_plr()
+  while getgenv().ESP_plr == true do task.wait()
+    local plr1 = game.Players.LocalPlayer
+    for _,plr in pairs(game.Players:GetPlayers()) do
+      if plr.Name ~= plr1.Name and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and not plr.Character:FindFirstChild("ESP_REDzHUB") and workspace:WaitForChild("Alive", 60):FindFirstChild(plr.Name) then
+        
+        local Folder = Instance.new("Folder", plr.Character)
+        local BHA = Instance.new("BoxHandleAdornment", Folder)
+        local BillboardGui = Instance.new("BillboardGui", BHA)
+        local TextLabel = Instance.new("TextLabel", BillboardGui)
+        Folder.Name = "ESP_REDzHUB"
+        
+        BHA.Size = Vector3.new(1, 0, 1, 0)
+        BHA.Name = "ESP_REDzHUB"
+        BHA.AlwaysOnTop = true
+        BHA.ZIndex = 10
+        BHA.Transparency = 0
+        
+        BillboardGui.Adornee = plr.Character.HumanoidRootPart
+        BillboardGui.Size = UDim2.new(0, 100, 0, 150)
+        BillboardGui.StudsOffset = Vector3.new(0, 1, 0)
+        BillboardGui.AlwaysOnTop = true
+        
+        TextLabel.BackgroundTransparency = 1
+        TextLabel.Position = UDim2.new(0, 0, 0, -50)
+        TextLabel.Size = UDim2.new(0, 100, 0, 100)
+        TextLabel.TextSize = 10
+        TextLabel.TextColor3 = Color3.new(1, 1, 1)
+        TextLabel.TextStrokeTransparency = 0
+        TextLabel.TextYAlignment = Enum.TextYAlignment.Bottom
+        TextLabel.Text = plr.Name .. " <...>"
+        TextLabel.ZIndex = 15
+        TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        
+        task.spawn(function()
+          while task.wait() do
+            local plrRP = plr1.Character:FindFirstChild("HumanoidRootPart")
+            if plr1 and plrRP and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+              local distance = math.floor((plrRP.Position - plr.Character.HumanoidRootPart.Position).Magnitude)
+              TextLabel.Text = plr.Name .. " <" .. tostring(distance) .. ">"
+            end
+          end
+        end)
+      end
+    end
+  end
+  task.wait()
+  for _,plr in pairs(game.Players:GetPlayers()) do
+    if plr and plr.Character and plr.Character:FindFirstChild("ESP_REDzHUB") then
+      plr.Character.ESP_REDzHUB:Destroy()
+    end
+  end
+end
+MainTab2:AddToggle({
+  Name = "Esp Players Vivos",
+  Default = false,
+  Callback = function(Value)
+    getgenv().ESP_plr = Value
+    ESP_plr()
+    end
+    })
+  
+  local function Click_Button()
+  task.spawn(function()
+    local plr = game.Players.LocalPlayer
+    local plrFind = workspace.Alive:FindFirstChild(plr.Name)
+    if plrFind then
+      local plrs = 0
+      for _,v in pairs(workspace:WaitForChild("Alive", 10):GetChildren()) do
+        plrs = plrs + 1
+      end
+      if plrs > 1 then
+        local args = {[1] = 1.5,[2] = CFrame.new(-254, 112, -119) * CFrame.Angles(-2, 0, 2),[3] = {
+        ["2617721424"] = Vector3.new(-273, -724, -20),
+        },[4] = {[1] = 910,[2] = 154}}
+        game:GetService("ReplicatedStorage").Remotes.ParryAttempt:FireServer(unpack(args))
+      end
+    end
+  end)
+end
+
+local function SpamClick()
+  while getgenv().SpamClick do task.wait()
+    Click_Button()
+  end
+end
+
+local Spam_OnOff = false
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+  if input.KeyCode == Enum.KeyCode.E then
+    Spam_OnOff = not Spam_OnOff
+    OrionLib:MakeNotification({Name = "Aviso",Content = Spam_OnOff and "O spam foi Ativado" or "O spam foi Dasitivado",Image = "rbxassetid://",Time = 5})
+    getgenv().SpamClick = Spam_OnOff
+    SpamClick()
+  end
+end)
+MainTab:AddButton({
+  Name = "Clique (E) no teclado para spam",
+  Callback = function()
+    OrionLib:MakeNotification({
+      Name = "Clique (E) no teclado para spam",
+      Content = "Clique (E) no teclado para spam",
+      Image = "rbxassetid://4483345998",
+      Time = 5
+    })
+  end    
+})
