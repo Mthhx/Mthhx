@@ -264,3 +264,37 @@ MainTab2:AddTextbox({
 })
 
 -------------LOCAL function----------------
+local function Click_Button()
+  task.spawn(function()
+    local plr = game.Players.LocalPlayer
+    local plrFind = workspace.Alive:FindFirstChild(plr.Name)
+    if plrFind then
+      local plrs = 0
+      for _,v in pairs(workspace:WaitForChild("Alive", 10):GetChildren()) do
+        plrs = plrs + 1
+      end
+      if plrs > 1 then
+        local args = {[1] = 1.5,[2] = CFrame.new(-254, 112, -119) * CFrame.Angles(-2, 0, 2),[3] = {
+        ["2617721424"] = Vector3.new(-273, -724, -20),
+        },[4] = {[1] = 910,[2] = 154}}
+        game:GetService("ReplicatedStorage").Remotes.ParryAttempt:FireServer(unpack(args))
+      end
+    end
+  end)
+end
+
+local function SpamClick()
+  while getgenv().SpamClick do task.wait()
+    Click_Button()
+  end
+end
+
+local Spam_OnOff = false
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+  if input.KeyCode == Enum.KeyCode.E then
+    Spam_OnOff = not Spam_OnOff
+    OrionLib:MakeNotification({Name = "Aviso",Content = Spam_OnOff and "O spam foi Ativado" or "O spam foi Dasitivado",Image = "rbxassetid://",Time = 5})
+    getgenv().SpamClick = Spam_OnOff
+    SpamClick()
+  end
+end)
