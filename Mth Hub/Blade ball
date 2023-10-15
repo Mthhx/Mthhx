@@ -41,21 +41,6 @@ MainTab:AddButton({
   end    
 })
 
-MainTab2:AddToggle({
-                        Name = "FPS booster",
-                   Default = false,
-              Callback = function(Value)
-if Value then
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/Mthhx/Mthhx/main/Mth%20/Fps/booster'),true))()
-                           OrionLib:MakeNotification({
-                      Name = "FPS BOOSTER",
-                Content = "fps booster ativado!",
-            Image = "rbxassetid://4483345998",
-Time = 5
-})
-     end
-  end
-})
 
        MainTab:AddToggle({
                         Name = "Auto Parry",
@@ -100,14 +85,7 @@ end
 end
 })
 
-    MainTab2:AddTextbox({
-    Name = "WalkSpeed",
-    Default = "36",
-    TextDisappear = false,
-    Callback = function(Value)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-    end      
-})
+    
 
 local function ESP_Ball()
   while getgenv().ESP_Ball == true do task.wait()
@@ -143,7 +121,7 @@ local function ESP_Ball()
         TextLabel.Text = "Ball <...>"
         TextLabel.ZIndex = 15
         TextLabel.TextColor3 = Color3.fromRGB(255,100,0)
-        
+        -------
         task.spawn(function()
           while task.wait() do
             local plr = game.Players.LocalPlayer
@@ -165,14 +143,7 @@ local function ESP_Ball()
   end
 end
 
-MainTab2:AddToggle({
-  Name = "Esp Ball",
-  Default = false,
-  Callback = function(Value)
-    getgenv().ESP_Ball = Value
-    ESP_Ball()
-  end    
-})
+
 local function ESP_plr()
   while getgenv().ESP_plr == true do task.wait()
     local plr1 = game.Players.LocalPlayer
@@ -226,49 +197,10 @@ local function ESP_plr()
     end
   end
 end
-MainTab2:AddToggle({
-  Name = "Esp Players Vivos",
-  Default = false,
-  Callback = function(Value)
-    getgenv().ESP_plr = Value
-    ESP_plr()
-    end
-    })
-  
-  local function Click_Button()
-  task.spawn(function()
-    local plr = game.Players.LocalPlayer
-    local plrFind = workspace.Alive:FindFirstChild(plr.Name)
-    if plrFind then
-      local plrs = 0
-      for _,v in pairs(workspace:WaitForChild("Alive", 10):GetChildren()) do
-        plrs = plrs + 1
-      end
-      if plrs > 1 then
-        local args = {[1] = 1.5,[2] = CFrame.new(-254, 112, -119) * CFrame.Angles(-2, 0, 2),[3] = {
-        ["2617721424"] = Vector3.new(-273, -724, -20),
-        },[4] = {[1] = 910,[2] = 154}}
-        game:GetService("ReplicatedStorage").Remotes.ParryAttempt:FireServer(unpack(args))
-      end
-    end
-  end)
-end
 
-local function SpamClick()
-  while getgenv().SpamClick do task.wait()
-    Click_Button()
-  end
-end
 
-local Spam_OnOff = false
-game:GetService("UserInputService").InputBegan:Connect(function(input)
-  if input.KeyCode == Enum.KeyCode.E then
-    Spam_OnOff = not Spam_OnOff
-    OrionLib:MakeNotification({Name = "Aviso",Content = Spam_OnOff and "O spam foi Ativado" or "O spam foi Dasitivado",Image = "rbxassetid://",Time = 5})
-    getgenv().SpamClick = Spam_OnOff
-    SpamClick()
-  end
-end)
+
+
 MainTab:AddButton({
   Name = "Clique (E) no teclado para spam",
   Callback = function()
@@ -280,3 +212,55 @@ MainTab:AddButton({
     })
   end    
 })
+
+-------------TAB2--------------------------
+
+
+MainTab2:AddButton({
+                        Name = "FPS booster",
+                  Callback = function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Mthhx/Mthhx/main/Mth%20/Fps/booster'),true))()
+ OrionLib:MakeNotification({
+	Name = "FPS booster",
+	Content = "FPS booster foi ativado!",
+	Image = "rbxassetid://4483345998",
+	Time = 7
+	})
+                  end
+    })
+
+MainTab2:AddButton({
+	Name = "Freeze Ball",
+	Callback = function()
+      	game:GetService("ReplicatedStorage").Remotes.Freeze:FireServer()
+  	end    
+})
+
+MainTab2:AddToggle({
+  Name = "Esp Players Vivos",
+  Default = false,
+  Callback = function(Value)
+    getgenv().ESP_plr = Value
+    ESP_plr()
+    end
+    })
+  
+  MainTab2:AddToggle({
+  Name = "Esp Ball",
+  Default = false,
+  Callback = function(Value)
+    getgenv().ESP_Ball = Value
+    ESP_Ball()
+  end    
+})
+
+MainTab2:AddTextbox({
+    Name = "WalkSpeed",
+    Default = "36",
+    TextDisappear = false,
+    Callback = function(Value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end      
+})
+
+-------------LOCAL function----------------
