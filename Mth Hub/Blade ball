@@ -7,7 +7,7 @@ Image = "rbxassetid://4483345998",
 Time = 10
 })
 
-local Window = OrionLib:MakeWindow({Name = "Mth Hub (BETA)", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "Mthhx Hub (BETA)", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest"})
 
 local function AutoClick()
   while getgenv().AutoClick == true do task.wait()
