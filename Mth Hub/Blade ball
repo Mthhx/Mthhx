@@ -1,8 +1,8 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Mthhx/Mthhx/main/Mth/Library'),true))()
 
 OrionLib:MakeNotification({
-Name = "Mth Hub ( BETA )",
-Content = "Mth Hub:Obrigado por usar nosso script :)",
+Name = "Mthhx Hub ( BETA )",
+Content = "Mthhx: Obrigado por usar nosso script :)",
 Image = "rbxassetid://4483345998",
 Time = 10
 })
@@ -47,14 +47,11 @@ MainTab:AddButton({
                    Default = false,
               Callback = function(Value)
 if Value then
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0", true))()
-getgenv().visualizer = true
-loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/RedCircleBlock"))()
-                           OrionLib:MakeNotification({
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0", true))()                           OrionLib:MakeNotification({
                       Name = "Auto Parry",
                 Content = "Auto Parry ativado!",
             Image = "rbxassetid://4483345998",
-Time = 10
+Time = 13
 })
      end
   end
