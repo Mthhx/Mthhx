@@ -72,7 +72,7 @@ local function AutoParry()
     if IsTarged() and Ball and tick() - OldTick2 > 0.2 and Ball:GetAttribute("realBall") and plrRP then
       local Distance = (Ball.Position - plrRP.Position).Magnitude
       local Velocity = (OldPos - Ball.Position).Magnitude
-      if (Distance / Velocity) <= 30 then
+      if (Distance / Velocity) <= 10 then
         parry()
       end
     end
