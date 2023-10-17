@@ -17,7 +17,6 @@ local function AutoClick()
   end
 end
 
-
 local MainTab = Window:MakeTab({
   Name = "Mth - Inicio",
   Icon = "rbxassetid://4483345998",
@@ -42,55 +41,20 @@ MainTab:AddButton({
   end    
 })
 
-local function AutoParry()
-  local ReplicatedStorage = game:GetService("ReplicatedStorage")
-  local Remotes = ReplicatedStorage:WaitForChild("Remotes", 9e9)
-  local Balls = workspace:WaitForChild("Balls", 20)
-  
-  local function IsTarged()
-    local plr = game.Players.LocalPlayer
-    return plr.Character and plr.Character:FindFirstChild("Highlight")
-  end
-  
-  local function parry()
-    Remotes:WaitForChild("ParryButtonPress"):Fire()
-  end
-  
-  local OldPos = Vector3.new()
-  local OldTick = tick()
-  local OldTick2 = tick()
-  
-  Balls.ChildAdded:Connect(function()
-    OldTick2 = tick()
-  end)
-  
-  while getgenv().AutoParry do task.wait()
-    local Ball = Balls:FindFirstChildOfClass("Part")
-    local plr = game.Players.LocalPlayer
-    local plrRP = plr.Character:FindFirstChild("HumanoidRootPart")
-    
-    if IsTarged() and Ball and tick() - OldTick2 > 0.2 and Ball:GetAttribute("realBall") and plrRP then
-      local Distance = (Ball.Position - plrRP.Position).Magnitude
-      local Velocity = (OldPos - Ball.Position).Magnitude
-      if (Distance / Velocity) <= 20 then
-        parry()
-      end
-    end
-    if Ball then
-      OldPos = Ball.Position
-      OldTick = tick()
-    end
-  end
-end
-
 
        MainTab:AddToggle({
-  Name = "Auto Parry",
-  Default = false,
-  Callback = function(Value)
-    getgenv().AutoParry = Value
-    AutoParry()
-  end   
+                        Name = "Auto Parry",
+                   Default = false,
+              Callback = function(Value)
+if Value then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/Refinement/main/MC%3ABlade%20Ball%20Parry%20V4.0.0", true))()                           OrionLib:MakeNotification({
+                      Name = "Auto Parry",
+                Content = "Auto Parry ativado!",
+            Image = "rbxassetid://4483345998",
+Time = 13
+})
+     end
+  end
 })
 
 MainTab:AddToggle({
