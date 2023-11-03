@@ -1,32 +1,63 @@
 local gui = Instance.new("ScreenGui")
-gui.ResetOnSpawn = false 
-gui.Parent = game.CoreGui 
+gui.ResetOnSpawn = false
+gui.Parent = game.CoreGui
 
 local frame = Instance.new("Frame")
-frame.Position = UDim2.new(0, 75, 0, 10)
-frame.Size = UDim2.new(0, 75, 0, 75)
-frame.BackgroundColor3 = Color3.new(0, 0, 0)
-frame.BorderSizePixel = 0
+frame.Position = UDim2.new(0, 10, 0, 10)
+frame.Size = UDim2.new(0, 90, 0, 90)
+frame.BackgroundColor3 = Color3.new(0.4, 0, 0.8)
+frame.BorderColor3 = Color3.new(1, 1, 1) -- Cor branca da borda
+frame.BorderSizePixel = 1 -- Espessura da borda
 frame.Parent = gui
+
+local movableLabel = Instance.new("TextLabel")
+movableLabel.Size = UDim2.new(1, 0, 0, 20)
+movableLabel.BackgroundColor3 = Color3.new(0.4, 0, 0.8)
+movableLabel.BorderColor3 = Color3.new(1, 1, 1) -- Cor branca da borda
+movableLabel.BorderSizePixel = 1 -- Espessura da borda
+movableLabel.Text = "MOVIVEL"
+movableLabel.Font = Enum.Font.SourceSans
+movableLabel.TextColor3 = Color3.new(1, 1, 1)
+movableLabel.TextSize = 16
+movableLabel.Parent = frame
 
 local button = Instance.new("TextButton")
 button.Text = "Ativar"
-button.Size = UDim2.new(1, -10, 1, -10)
-button.Position = UDim2.new(0, 10, 0, 10)
-button.BackgroundColor3 = Color3.new(1, 1, 1)
-button.BorderColor3 = Color3.new(0, 0, 0)
-button.BorderSizePixel = 2
+button.Size = UDim2.new(1, -10, 1, -40)
+button.Position = UDim2.new(0, 5, 0, 30)
+button.BackgroundColor3 = Color3.new(0.6, 0.2, 1) -- Cor roxa mais clara
+button.BorderColor3 = Color3.new(1, 1, 1) -- Cor branca da borda
+button.BorderSizePixel = 1 -- Espessura da borda
 button.Font = Enum.Font.SourceSans
-button.TextColor3 = Color3.new(0, 0, 0)
+button.TextColor3 = Color3.new(1, 1, 1)
 button.TextSize = 16
 button.Parent = frame
 
+frame.Active = true
+frame.Draggable = true
+
 local activated = false
+
+local originalColor = {
+    Frame = frame.BackgroundColor3,
+    Label = movableLabel.BackgroundColor3,
+    Button = button.BackgroundColor3
+}
 
 local function toggle()
     activated = not activated
     button.Text = activated and "Desativar" or "Ativar"
-    
+
+    if activated then
+        frame.BackgroundColor3 = Color3.new(1, 0.4, 0.8) -- Cor rosa
+        movableLabel.BackgroundColor3 = Color3.new(1, 0.4, 0.8) -- Cor rosa
+        button.BackgroundColor3 = Color3.new(1, 0.4, 0.8) -- Cor rosa
+    else
+        frame.BackgroundColor3 = originalColor.Frame
+        movableLabel.BackgroundColor3 = originalColor.Label
+        button.BackgroundColor3 = originalColor.Button
+    end
+
     while activated do
         local args = {
             [1] = 1.5,
@@ -41,7 +72,8 @@ local function toggle()
             }
         }
 
-        game:GetService("ReplicatedStorage").Remotes.ParryAttempt:FireServer(unpack(args))
+        -- Insira sua lógica enquanto ativado aqui
+game:GetService("ReplicatedStorage").Remotes.ParryAttempt:FireServer(unpack(args))
         game:GetService("RunService").Heartbeat:Wait()
     end
 end
