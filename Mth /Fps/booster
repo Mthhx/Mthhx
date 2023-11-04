@@ -378,3 +378,34 @@ warn("FPS Booster Loaded!")
 --[[game.DescendantAdded:Connect(function(value)
     CheckIfBad(value)
 end)]]
+local gui = Instance.new("ScreenGui")
+gui.Name = "YourScreenGui"  -- Especifique o nome que desejar
+gui.ResetOnSpawn = false
+gui.Parent = game.CoreGui
+
+local movableLabel = Instance.new("TextLabel")
+movableLabel.Name ="YourTextLabel"
+movableLabel.Text = "FPS"
+movableLabel.TextColor3 = Color3.new(1, 0, 0)
+movableLabel.Size = UDim2.new(0, 150, 0, 30)
+movableLabel.Position = UDim2.new(0, 130, 0, 0)
+movableLabel.FontSize = Enum.FontSize.Size14
+movableLabel.BackgroundTransparency = 1
+movableLabel.Parent = gui
+ local RunService = game:GetService("RunService")
+ 
+local frameCount = 0
+local lastTime = tick()
+
+RunService.RenderStepped:Connect(function()
+    local currentTime = tick()
+    local deltaTime = currentTime - lastTime
+    frameCount = frameCount + 1
+
+    if deltaTime >= 1 then
+        local fps = frameCount / deltaTime
+        movableLabel.Text = "FPS: " .. math.floor(fps)
+        frameCount = 0
+ lastTime = currentTime
+    end
+end)
