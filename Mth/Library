@@ -669,8 +669,6 @@ function OrionLib:MakeWindow(WindowConfig)
 	  Orion:Destroy()
 	end)
 
-	OrionLib:MakeNotification({Name = "Mthhx -",Content = "HUB sendo Iniciado |" ,Image = "rbxassetid://14824506141",Time = 7})
-
 	local function LoadSequence()
 		MainWindow.Visible = false
 		local LoadSequenceLogo = SetProps(MakeElement("Image", WindowConfig.IntroIcon), {
